@@ -3,7 +3,7 @@
 For CLC 12
 
 
-main.py:
+database.py:
 
 Allows me to upload price data (open, high, low, close) and volume from any stock.
 
