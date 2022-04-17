@@ -14,4 +14,5 @@ class database:
     self.database = database
     self.port = port
   
-  
+  def connect(self):
+    connection = ps.connect(host=self.host,user=self.user,password=self.password,database=self.database,port=self.port)
