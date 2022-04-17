@@ -25,3 +25,7 @@ class database:
     self.connect().commit()
   except Exception as error:
     print('Execution Failed: ', error)
+
+# Variables are empty so other people cannot see private database information
+db = database('', '', '', '', '')
+print(db.connect())
