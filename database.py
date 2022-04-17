@@ -1,9 +1,6 @@
 import psycopg2 as ps
 import requests
 
-time_series_daily = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=YW9W7ZBX5RBNC6V7'
-r = requests.get(time_series_daily)
-
 class database:
   # When calling the class, the variables in the __init__ function are also inputted by the user
   def __init__(self, host, user, password, database, port):
@@ -17,6 +14,47 @@ class database:
     connection = ps.connect(host=self.host,user=self.user,password=self.password,database=self.database,port=self.port)
     return connection
 
+  def stock_data(self):
+    # retriving json file with price and volume data
+    time_series_daily = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=YW9W7ZBX5RBNC6V7'
+    r = requests.get(time_series_daily)
+    self.data = data = r.json()
+    
+    # returns last 30 trading days
+    self.trade_dates = trade_dates = list(data['Time Series (Daily)'].keys())[0:30]
+    
+    # iterating through the last 30 trading dates to put price and volume data into database
+    for dates in trade_dates:
+        symbol = self.symbol
+        open = data['Time Series (Daily)'][dates]['1. open']
+        high = data['Time Series (Daily)'][dates]['2. high']
+        low = data['Time Series (Daily)'][dates]['3. low']
+        close = data['Time Series (Daily)'][dates]['4. close']
+        volume = data['Time Series (Daily)'][dates]['5. volume']
+        
+        command = f'''
+            insert into public.all_stock_data (
+            symbol,    
+            trade_date,
+            open_price,
+            high_price,
+            low_price,
+            close_price,
+            volume
+            )
+
+            values (
+            {symbol}
+            {dates},
+            {open},
+            {high},
+            {low},
+            {close},
+            {volume}
+            );
+        '''
+        self.execute(command)
+    
   def execute(self, command):
     connection = self.connect()
     try:
@@ -43,5 +81,7 @@ create table public.all_stock_data (
 '''
 
 # Variables are empty so other people cannot see private database information
-db = database('', '', '', '', '')
-print(db.connect())
+db = database('aapl,'', '', '', '', '')
+# print(db.connect())
+print(db.stock_data())
+
