@@ -16,15 +16,16 @@ class database:
   
   def connect(self):
     connection = ps.connect(host=self.host,user=self.user,password=self.password,database=self.database,port=self.port)
+    return connection
 
   def execute(self, command):
-    cursor = self.connect().cursor()
-  try:
-    cursor.execute(command)
-    print('Executed Successfully')
-    self.connect().commit()
-  except Exception as error:
-    print('Execution Failed: ', error)
+    try:
+      cursor = self.connect().cursor()
+      cursor.execute(command)
+      print('Executed Successfully')
+      self.connect().commit()
+    except Exception as error:
+      print('Execution Failed: ', error)
 
     
 command = '''
