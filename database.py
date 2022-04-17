@@ -26,6 +26,20 @@ class database:
   except Exception as error:
     print('Execution Failed: ', error)
 
+    
+command = '''
+create table public.all_stock_data (
+    id serial, 
+    symbol varchar,
+    trade_date varchar,
+    open_price float,
+    high_price float,
+    low_price float,
+    close_price float,
+    volume float
+);
+'''
+
 # Variables are empty so other people cannot see private database information
 db = database('', '', '', '', '')
 print(db.connect())
