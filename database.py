@@ -3,7 +3,6 @@ import requests
 
 time_series_daily = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=YW9W7ZBX5RBNC6V7'
 r = requests.get(time_series_daily)
-print(r)
 
 class database:
   # When calling the class, the variables in the __init__ function are also inputted by the user
@@ -19,15 +18,17 @@ class database:
     return connection
 
   def execute(self, command):
+    connection = self.connect()
     try:
-      cursor = self.connect().cursor()
+      cursor = connection.cursor()
       cursor.execute(command)
       print('Executed Successfully')
-      self.connect().commit()
+      connection.commit()
     except Exception as error:
       print('Execution Failed: ', error)
+    finally:
+      connection.close()
 
-    
 command = '''
 create table public.all_stock_data (
     id serial, 
