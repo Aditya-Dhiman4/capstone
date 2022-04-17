@@ -44,8 +44,8 @@ class database:
             )
 
             values (
-            {symbol}
-            {dates},
+            '{symbol}',
+            '{dates}',
             {open},
             {high},
             {low},
