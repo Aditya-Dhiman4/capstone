@@ -16,7 +16,12 @@ class database:
   
   def connect(self):
     connection = ps.connect(host=self.host,user=self.user,password=self.password,database=self.database,port=self.port)
-    return connection
-  
-db = database('ec2-23-20-224-166.compute-1.amazonaws.com', 'zsuqqgfjipwpwu', '98b25a8a11bf2eb034266f33871bcc966d3a4217d37ed4e3f542bdccf1717c79', 'db1apeq0n8lsoa', '5432')
-print(db.connect())
+
+  def execute(self, command):
+    cursor = self.connect().cursor()
+  try:
+    cursor.execute(command)
+    print('Executed Successfully')
+    self.connect().commit()
+  except Exception as error:
+    print('Execution Failed: ', error)
