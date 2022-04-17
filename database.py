@@ -16,7 +16,7 @@ class database:
 
   def stock_data(self):
     # retriving json file with price and volume data
-    time_series_daily = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=YW9W7ZBX5RBNC6V7'
+    time_series_daily = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={self.symbol}&outputsize=compact&apikey=YW9W7ZBX5RBNC6V7'
     r = requests.get(time_series_daily)
     self.data = data = r.json()
     
