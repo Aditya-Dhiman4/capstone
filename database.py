@@ -1,4 +1,5 @@
 import psycopg2 as ps
+import pandas as pd
 import requests
 
 class database:
