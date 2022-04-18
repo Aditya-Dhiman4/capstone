@@ -63,6 +63,7 @@ class database:
         cursor.execute(command)
         print('Executed Successfully')
         # creating pandas dataframe
+        all_data = []
         columns = []
         for column in cursor.description:
           columns.append(column[0])
