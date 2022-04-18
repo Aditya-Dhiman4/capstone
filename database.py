@@ -68,7 +68,7 @@ class database:
         for column in cursor.description:
           columns.append(column[0])
         for rows in cursor.fetchall():
-          pd.DataFrame.dict(zip(columns, rows))
+          all_data.append(dict(zip(columns, rows)))
 
         connection.commit()
         
