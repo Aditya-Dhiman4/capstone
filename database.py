@@ -62,15 +62,17 @@ class database:
         cursor = connection.cursor()
         cursor.execute(command)
         print('Executed Successfully')
-        # creating pandas dataframe
+        # creating columns and rows for pandas dataframe
         all_data = []
         columns = []
         for column in cursor.description:
           columns.append(column[0])
         for rows in cursor.fetchall():
           all_data.append(dict(zip(columns, rows)))
-
+        
+        # creating pandas dataframe
         connection.commit()
+        pd.DataFrame(all_data)
         
     except Exception as error:
       print('Execution Failed: ', error)
