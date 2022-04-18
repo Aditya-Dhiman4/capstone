@@ -58,10 +58,18 @@ class database:
   def execute(self, command):
     connection = self.connect()
     try:
-      cursor = connection.cursor()
-      cursor.execute(command)
-      print('Executed Successfully')
-      connection.commit()
+        cursor = connection.cursor()
+        cursor.execute(command)
+        print('Executed Successfully')
+        # creating pandas dataframe
+        columns = []
+        for column in cursor.description:
+          columns.append(column[0])
+        for rows in cursor.fetchall():
+          pd.DataFrame.dict(zip(columns, rows))
+
+        connection.commit()
+        
     except Exception as error:
       print('Execution Failed: ', error)
     finally:
