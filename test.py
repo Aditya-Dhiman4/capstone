@@ -16,4 +16,5 @@ for key in keys:
 new_keys.append('yearly_weekhigh')
 new_keys.append('yearly_weeklow')
 
-print(new_keys)
+sql_columns = ','.join(new_keys)
+print(sql_columns)
