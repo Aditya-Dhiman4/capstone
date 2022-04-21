@@ -36,7 +36,9 @@ class database:
     new_keys.append('yearly_weekhigh')
     new_keys.append('yearly_weeklow')
 
-    print(new_keys)
+    sql_columns = ','.join(new_keys)
+    print(sql_columns)
+
     # returns last 30 trading days
     trade_dates = list(time_series_data['Time Series (Daily)'].keys())[0:30]
     
