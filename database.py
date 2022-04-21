@@ -43,7 +43,7 @@ class database:
             {sql_columns}
         )  
         values (
-            {key}
+            {overview_data{key}}
         );    
         '''
         self.insert(command)
