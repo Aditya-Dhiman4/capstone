@@ -52,7 +52,7 @@ class database:
             {volume}
             );
         '''
-        self.execute(command)
+        self.insert(command)
     
   def execute(self, command):
     connection = self.connect()
@@ -77,8 +77,20 @@ class database:
     finally:
       connection.close()
 
+  def insert(self, command):
+    connection = self.connect()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(command)
+        print('Inserted Successfully')
+        connection.commit()
+    except Exception as error:
+        print('Insert Failed: ', error)
+    finally:
+        connection.close()
+
 # Variables are empty so other people cannot see private database information
-db = database('aapl,'', '', '', '', '')
+db = database('', '', '', '', '')
 # print(db.connect())
 print(db.stock_data('f'))
 
