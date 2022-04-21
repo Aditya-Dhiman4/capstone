@@ -54,7 +54,7 @@ class database:
         '''
         self.insert(command)
     
-  def execute(self, command):
+  def select_to_df(self, command):
     connection = self.connect()
     try:
         cursor = connection.cursor()
@@ -70,7 +70,7 @@ class database:
         
         # creating pandas dataframe
         connection.commit()
-        pd.DataFrame(all_data)
+        return pd.DataFrame(all_data)
         
     except Exception as error:
       print('Execution Failed: ', error)
@@ -91,6 +91,9 @@ class database:
 
 # Variables are empty so other people cannot see private database information
 db = database('', '', '', '', '')
-# print(db.connect())
-print(db.stock_data('f'))
+print(db.select_to_df('''
+select symbol, trade_date, open_price, high_price, low_price, close_price, volume
+from public.all_stock_data
+'''))
+print(db.stock_data('AAPL'))
 
