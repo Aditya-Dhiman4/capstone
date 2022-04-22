@@ -30,23 +30,28 @@ class database:
     del keys[-1]
     new_keys = []
 
+    # print(keys)
+
     for key in keys:
         new_keys.append(key.lower())
 
     new_keys.append('yearly_weekhigh')
     new_keys.append('yearly_weeklow')
+    keys.append('52WeekHigh')
+    keys.append('52WeekLow')
 
-    sql_columns = ','.join(new_keys)
+    sql_columns = ', '.join(new_keys)
+
     for key in keys:
-        command = f'''
+      command = f'''
         insert into public.overview_data (
             {sql_columns}
         )  
         values (
-            {overview_data{key}}
+            {overview_data[key]}
         );    
         '''
-        self.insert(command)
+      self.insert(command)
 
     # returns last 30 trading days
     trade_dates = list(time_series_data['Time Series (Daily)'].keys())[0:30]
@@ -79,7 +84,7 @@ class database:
             {volume}
             );
         '''
-        self.insert(command)
+        # self.insert(command)
     
   def select_to_df(self, command):
     connection = self.connect()
