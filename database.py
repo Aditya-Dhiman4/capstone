@@ -26,21 +26,8 @@ class database:
 
     keys = list(overview_data.keys())
     del keys[1:13]
-    del keys[27:-1]
+    del keys[29:-1]
     del keys[-1]
-    new_keys = []
-
-    # print(keys)
-
-    for key in keys:
-        new_keys.append(key.lower())
-
-    new_keys.append('yearly_weekhigh')
-    new_keys.append('yearly_weeklow')
-    keys.append('52WeekHigh')
-    keys.append('52WeekLow')
-
-    sql_columns = ', '.join(new_keys)
 
     command = f'''
         insert into public.overview_data (
@@ -75,35 +62,35 @@ class database:
             yearly_weeklow
         )  
         values (
-            {overview_data['symbol']},
-            {overview_data['marketcapitalization']},
-            {overview_data['ebitda']},
-            {overview_data['peratio']},
-            {overview_data['pegratio']},
-            {overview_data['bookvalue']},
-            {overview_data['dividendpershare']},
-            {overview_data['dividendyield']},
-            {overview_data['eps']},
-            {overview_data['revenuepersharettm']},
-            {overview_data['profitmargin']},
-            {overview_data['operatingmarginttm']},
-            {overview_data['returnonassetsttm']},
-            {overview_data['returnonequityttm']},
-            {overview_data['revenuettm']},
-            {overview_data['grossprofitttm']},
-            {overview_data['dilutedepsttm']},
-            {overview_data['quarterlyearningsgrowthyoy']},
-            {overview_data['quarterlyrevenuegrowthyoy']},
-            {overview_data['analysttargetprice']},
-            {overview_data['trailingpe']},
-            {overview_data['forwardpe']},
-            {overview_data['pricetosalesratiottm']},
-            {overview_data['pricetobookratio']},
-            {overview_data['evtorevenue']},
-            {overview_data['evtoebitda']},
-            {overview_data['beta']},
-            {overview_data['yearly_weekhigh']},
-            {overview_data['yearly_weeklow']}
+            '{overview_data[keys[0]]}',
+            {overview_data[keys[1]]},
+            {overview_data[keys[2]]},
+            {overview_data[keys[3]]},
+            {overview_data[keys[4]]},
+            {overview_data[keys[5]]},
+            {overview_data[keys[6]]},
+            {overview_data[keys[7]]},
+            {overview_data[keys[8]]},
+            {overview_data[keys[9]]},
+            {overview_data[keys[10]]},
+            {overview_data[keys[11]]},
+            {overview_data[keys[12]]},
+            {overview_data[keys[13]]},
+            {overview_data[keys[14]]},
+            {overview_data[keys[15]]},
+            {overview_data[keys[16]]},
+            {overview_data[keys[17]]},
+            {overview_data[keys[18]]},
+            {overview_data[keys[19]]},
+            {overview_data[keys[20]]},
+            {overview_data[keys[21]]},
+            {overview_data[keys[22]]},
+            {overview_data[keys[23]]},
+            {overview_data[keys[24]]},
+            {overview_data[keys[25]]},
+            {overview_data[keys[26]]},
+            {overview_data[keys[27]]},
+            {overview_data[keys[28]]}
         );    
         '''
     self.insert(command)
