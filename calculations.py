@@ -15,4 +15,15 @@ from public.overview_data where symbol = 'INTC'
 
 # Retrieving Beta from dataframe
 beta = overview_data['beta'][0]
-print(beta)
+
+def beta_Volatility(beta):
+	if 0 <= beta < 1:
+		return 'Low Volatility'
+	elif beta > 1:
+		return 'High Volatility'
+	elif beta == 1:
+		return 'Same Volatility'
+	elif beta < 0:
+		return 'No Correlation'
+
+print(beta_Volatility(beta))
