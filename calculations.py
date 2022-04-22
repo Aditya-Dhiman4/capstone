@@ -16,6 +16,7 @@ from public.overview_data where symbol = 'INTC'
 # Retrieving Beta from dataframe
 beta = overview_data['beta'][0]
 
+# Calculating if Beta suggests high, low, same volatility or no corrolation
 def beta_Volatility(beta):
 	if 0 <= beta < 1:
 		return 'Low Volatility'
