@@ -42,16 +42,71 @@ class database:
 
     sql_columns = ', '.join(new_keys)
 
-    for key in keys:
-      command = f'''
+    command = f'''
         insert into public.overview_data (
-            {sql_columns}
+            symbol, 
+            marketcapitalization, 
+            ebitda, 
+            peratio, 
+            pegratio, 
+            bookvalue, 
+            dividendpershare, 
+            dividendyield, 
+            eps, 
+            revenuepersharettm, 
+            profitmargin, 
+            operatingmarginttm, 
+            returnonassetsttm, 
+            returnonequityttm, 
+            revenuettm, 
+            grossprofitttm, 
+            dilutedepsttm, 
+            quarterlyearningsgrowthyoy, 
+            quarterlyrevenuegrowthyoy, 
+            analysttargetprice, 
+            trailingpe, 
+            forwardpe, 
+            pricetosalesratiottm, 
+            pricetobookratio, 
+            evtorevenue, 
+            evtoebitda, 
+            beta, 
+            yearly_weekhigh, 
+            yearly_weeklow
         )  
         values (
-            {overview_data[key]}
+            {overview_data['symbol']},
+            {overview_data['marketcapitalization']},
+            {overview_data['ebitda']},
+            {overview_data['peratio']},
+            {overview_data['pegratio']},
+            {overview_data['bookvalue']},
+            {overview_data['dividendpershare']},
+            {overview_data['dividendyield']},
+            {overview_data['eps']},
+            {overview_data['revenuepersharettm']},
+            {overview_data['profitmargin']},
+            {overview_data['operatingmarginttm']},
+            {overview_data['returnonassetsttm']},
+            {overview_data['returnonequityttm']},
+            {overview_data['revenuettm']},
+            {overview_data['grossprofitttm']},
+            {overview_data['dilutedepsttm']},
+            {overview_data['quarterlyearningsgrowthyoy']},
+            {overview_data['quarterlyrevenuegrowthyoy']},
+            {overview_data['analysttargetprice']},
+            {overview_data['trailingpe']},
+            {overview_data['forwardpe']},
+            {overview_data['pricetosalesratiottm']},
+            {overview_data['pricetobookratio']},
+            {overview_data['evtorevenue']},
+            {overview_data['evtoebitda']},
+            {overview_data['beta']},
+            {overview_data['yearly_weekhigh']},
+            {overview_data['yearly_weeklow']}
         );    
         '''
-      self.insert(command)
+    self.insert(command)
 
     # returns last 30 trading days
     trade_dates = list(time_series_data['Time Series (Daily)'].keys())[0:30]
