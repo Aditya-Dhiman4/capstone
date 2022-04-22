@@ -126,7 +126,7 @@ class database:
             {volume}
             );
         '''
-        # self.insert(command)
+        self.insert(command)
     
   def select_to_df(self, command):
     connection = self.connect()
