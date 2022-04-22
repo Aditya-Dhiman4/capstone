@@ -4,7 +4,7 @@ import math
 # getting price and volume data
 time_series_data = db.select_to_df('''
 select symbol, trade_date, open_price, high_price, low_price, close_price, volume
-from public.all_stock_data where symbol = 'NVDA' 
+from public.all_stock_data where symbol = 'INTC' 
 ''')
 
 # getting other data (ex. P/E Ratio, 52 Week High, etc.)
