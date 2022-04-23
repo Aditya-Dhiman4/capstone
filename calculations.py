@@ -22,8 +22,8 @@ yearly_weekhigh = overview_data['yearly_weekhigh'][0]
 yearly_weeklow = overview_data['yearly_weeklow'][0]
 current_price = time_series_data['close_price'][0]
 peg_ratio = overview_data['pegratio'][0]
+dividend_yield = overview_data['dividendyield'][0]
 
-# Calculating if Beta suggests high, low, same volatility or no corrolation
 def beta_Volatility(beta):
 	if 0 <= beta < 1:
 		return 'Low Volatility'
@@ -50,6 +50,13 @@ def peg_ratio_BullBear(ratio):
 	elif ratio > 1:
 		return 'Bearish/Overvalued'
 
-print(peg_ratio_BullBear(peg_ratio))
-print(yearly_high_low_Volatility(yearly_weekhigh, yearly_weeklow, current_price))
+def dividend_yield_Volatility(dividend):
+	if dividend == 0:
+		return 'High Volatility'
+	elif dividend > 0:
+		return 'Low volatility'
+
 print(beta_Volatility(beta))
+print(yearly_high_low_BullBear(yearly_weekhigh, yearly_weeklow, current_price))
+print(peg_ratio_BullBear(peg_ratio))
+print(dividend_yield_Volatility(dividend_yield))
