@@ -18,6 +18,9 @@ from public.overview_data where symbol = '{symbol}'
 
 # Retrieving Beta from dataframe
 beta = overview_data['beta'][0]
+yearly_weekhigh = overview_data['yearly_weekhigh'][0]
+yearly_weeklow = overview_data['yearly_weeklow'][0]
+current_price = time_series_data['close_price'][0]
 
 # Calculating if Beta suggests high, low, same volatility or no corrolation
 def beta_Volatility(beta):
@@ -29,5 +32,17 @@ def beta_Volatility(beta):
 		return 'Same Volatility'
 	elif beta < 0:
 		return 'No Correlation'
+
+def yearly_high_low_Volatility(high, low, current):
+	current_to_high = (current / high)*100
+	current_to_low = (current / low)*100
+	if current_to_high >= 95:
+		return 'Bearish'
+	if current_to_low <= 1.05:
+		return 'Bullish'
+	else:
+		return 'In between'
+
+print(yearly_high_low_Volatility(yearly_weekhigh, yearly_weeklow, current_price))
 
 print(beta_Volatility(beta))
