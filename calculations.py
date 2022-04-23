@@ -33,7 +33,7 @@ def beta_Volatility(beta):
 	elif beta < 0:
 		return 'No Correlation'
 
-def yearly_high_low_Volatility(high, low, current):
+def yearly_high_low_BullBear(high, low, current):
 	current_to_high = (current / high)*100
 	current_to_low = (current / low)*100
 	if current_to_high >= 95:
