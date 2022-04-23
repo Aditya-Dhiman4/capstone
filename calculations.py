@@ -16,11 +16,12 @@ select symbol, marketcapitalization, ebitda, peratio, pegratio, bookvalue, divid
 from public.overview_data where symbol = '{symbol}'
 ''')
 
-# Retrieving Beta from dataframe
+# Retrieving variables from dataframe
 beta = overview_data['beta'][0]
 yearly_weekhigh = overview_data['yearly_weekhigh'][0]
 yearly_weeklow = overview_data['yearly_weeklow'][0]
 current_price = time_series_data['close_price'][0]
+peg_ratio = overview_data['pegratio'][0]
 
 # Calculating if Beta suggests high, low, same volatility or no corrolation
 def beta_Volatility(beta):
@@ -43,6 +44,12 @@ def yearly_high_low_BullBear(high, low, current):
 	else:
 		return 'In between'
 
-print(yearly_high_low_Volatility(yearly_weekhigh, yearly_weeklow, current_price))
+def peg_ratio_BullBear(ratio):
+	if ratio <= 1:
+		return 'Bullish/Undervalued'
+	elif ratio > 1:
+		return 'Bearish/Overvalued'
 
+print(peg_ratio_BullBear(peg_ratio))
+print(yearly_high_low_Volatility(yearly_weekhigh, yearly_weeklow, current_price))
 print(beta_Volatility(beta))
