@@ -2,4 +2,11 @@
     background-color: #B6E7FF;
     border: none;
     border-radius: 100px;
+    width: 100%;
+}
+
+#search {
+    display: block;
+    padding-left: 30%;
+    padding-right: 30%;
 }
