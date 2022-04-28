@@ -1,6 +1,6 @@
 .nav {
     display: block;
-    font: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     background: rgb(193, 193, 193);
     margin-top: 0px;
     padding-top: 0.001%;
@@ -18,7 +18,14 @@
 }
 
 #search {
-    display: block;
-    padding-left: 30%;
-    padding-right: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.doc {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+
+
