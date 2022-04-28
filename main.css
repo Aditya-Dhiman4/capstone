@@ -1,7 +1,12 @@
 .nav {
+    display: block;
+    font: Arial;
     background: rgb(193, 193, 193);
+    margin-top: 0px;
+    padding-top: 0.001%;
+    padding-bottom: 0.001%;
+    padding-left: 2%;
 }
-
 
 #search input[type=text]{
     background-color: #B6E7FF;
