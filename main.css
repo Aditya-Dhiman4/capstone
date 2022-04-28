@@ -1,3 +1,8 @@
+.nav {
+    background: rgb(193, 193, 193);
+}
+
+
 #search input[type=text]{
     background-color: #B6E7FF;
     border: none;
