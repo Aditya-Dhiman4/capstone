@@ -29,7 +29,8 @@
 
 .doc {
     display: inline-block;
-    background-color: rgb(193, 193, 193);
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 41%;
+    background: rgb(193, 193, 193);
+    width: 100%;
+    padding: 1%;
 }
