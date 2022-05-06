@@ -4,6 +4,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def interface():
-    print('hello')
+    return 'hello'
 
 app.run()
