@@ -6,5 +6,9 @@ app = Flask(__name__,  template_folder="frontend")
 def interface():
     return render_template('home.html')
 
+@app.route('/StockReport')
+def stock_report():
+    return render_template('stock_report.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
