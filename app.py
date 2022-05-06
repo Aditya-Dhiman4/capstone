@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
 @app.route('/')
 def interface():
-    return render_template('home.html')
+    return jsonify({'Symbol':'AAPL'})
+    # return render_template('home.html')
 
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
