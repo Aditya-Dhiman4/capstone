@@ -1,9 +1,9 @@
-from flask import Flask, request
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route('/')
 def interface():
-    return 'hello'
+    return render_template('home.html')
 
 app.run()
